@@ -1,4 +1,5 @@
 import os
+import log
 from paths import sanitize_path_segment
 from lock import FileLock
 from nixerrors import NixError
@@ -31,6 +32,9 @@ class RepositoryCache:
     def root_directory(self):
         root = cache_root(self.repository)
         os.makedirs(root, exist_ok=True)
+        log.warning("root is at '{}'".format(
+                root
+            ))
         return root
 
     def lock(self):
